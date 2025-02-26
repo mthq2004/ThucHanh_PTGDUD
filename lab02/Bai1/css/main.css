@@ -1,0 +1,155 @@
+* {
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100vmax;
+  height: 100vmax;
+}
+
+header {
+  display: flex;
+}
+.input-search {
+  position: relative;
+  margin-top: 14px;
+  width: 350px;
+}
+.input-search input {
+  width: 100%;
+  padding: 10px 15px 10px 40px; /* Chừa khoảng trống cho icon */
+  border: none;
+  border-radius: 20px;
+  background-color: #f2f2f2; /* Màu nền */
+  font-size: 16px;
+  outline: none;
+}
+.input-search img {
+  position: absolute;
+  left: 12px;
+  top: 40%;
+  transform: translateY(-50%);
+  color: #777;
+}
+
+.menu {
+  width: 100%;
+  padding-top: 25px;
+  padding-left: 10px;
+}
+
+.menu ul li {
+  display: inline;
+  a {
+    color: #777;
+    text-decoration: none;
+    padding-right: 20px;
+    font: caption;
+  }
+  a:hover {
+    color: #f44b86;
+  }
+}
+
+.recipe-box {
+  width: 200px;
+  margin-top: 14px;
+  background-color: #fdf1f5;
+  border-radius: 10px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.recipe-box img {
+  height: 40px;
+}
+
+.recipe-box span {
+  font-size: 16px;
+  font-weight: bold;
+  color: #e76c97;
+}
+.avatar {
+  margin-top: 5px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #ffc0cb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid black;
+}
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+main {
+  clear: both;
+  width: 100%;
+  height: 60%;
+}
+.section-left {
+  float: left;
+  width: 40%; /* Định kích thước khối */
+  height: 1000px;
+  display: flex;
+  justify-content: center; /* Căn giữa ngang */
+  align-items: center; /* Căn giữa dọc */
+}
+
+.section-left img {
+  max-width: 100%;
+  max-height: 100%;
+}
+.section-right {
+  float: left;
+  width: 60%; /* Điều chỉnh kích thước */
+  height: 500px;
+  display: flex;
+  flex-direction: column; /* Sắp xếp theo chiều dọc */
+  justify-content: center; /* Căn giữa theo chiều dọc */
+  align-items: center; /* Căn giữa theo chiều ngang */
+  text-align: center; /* Căn chữ vào giữa */
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.btn {
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn span {
+  background-color: #ffcc00;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.fotter {
+  width: 100%;
+  color: white;
+  background-color: #1c2228;
+  display: flex;
+  border: 1px solid;
+  border-radius: 10px;
+  justify-content: space-between;
+}
+.fotter input {
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  width: 300px;
+  background-color: #f8f8f8;
+}

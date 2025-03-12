@@ -1,65 +1,30 @@
-import React from "react";
-
+import React from 'react';
 const Header = () => {
-  return (
-    <header className="flex items-center justify-between p-4 shadow-md bg-white">
-      <img src="../img/logo.png" alt="Logo" className="h-10" />
-      <div className="relative w-80">
-        <img
-          src="../img/search.png"
-          alt="Search"
-          className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5"
-        />
-        <input
-          type="text"
-          placeholder="Search..."
-          className="w-full pl-10 pr-4 py-2 rounded-full bg-gray-100 outline-none"
-        />
-      </div>
-      <nav>
-        <ul className="flex space-x-6 text-gray-600">
-          <li>
-            <a href="#" className="hover:text-pink-500">
-              What to cook
-            </a>
-          </li>
-          <li>
-            <a href="#" className="hover:text-pink-500">
-              Recipes
-            </a>
-          </li>
-          <li>
-            <a href="#" className="hover:text-pink-500">
-              Ingredients
-            </a>
-          </li>
-          <li>
-            <a href="#" className="hover:text-pink-500">
-              Occasions
-            </a>
-          </li>
-          <li>
-            <a href="#" className="hover:text-pink-500">
-              About Us
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <div className="flex items-center space-x-4">
-        <div className="flex items-center bg-pink-100 px-4 py-2 rounded-lg shadow-sm">
-          <img src="../img/box.png" alt="Recipe Box" className="h-8" />
-          <span className="ml-2 font-bold text-pink-500">Your Recipe Box</span>
+    return (
+        <div className="flex items-center justify-between p-4 bg-white shadow-md w-full">
+            <div className="flex items-center gap-4">
+                <img src="../src/assets/logo.PNG" alt="Logo" className="h-10" />
+                <input 
+                    type="text" 
+                    placeholder="What would you like to cook?" 
+                    className="px-4 py-2 border border-gray-300 rounded-full w-96 focus:outline-none focus:ring-2 focus:ring-pink-400"
+                />
+            </div>
+            <div className="flex items-center gap-4">
+                <nav className="hidden md:flex gap-4">
+                    <a href="#" className="text-gray-700 hover:text-pink-500">What to cook</a>
+                    <a href="#" className="text-gray-700 hover:text-pink-500">Recipes</a>
+                    <a href="#" className="text-gray-700 hover:text-pink-500">Ingredients</a>
+                    <a href="#" className="text-gray-700 hover:text-pink-500">Occasions</a>
+                    <a href="#" className="text-gray-700 hover:text-pink-500">About Us</a>
+                </nav>
+                <button className="bg-pink-500 text-white px-4 py-2 rounded-full">
+                    Your Recipe Box
+                </button>
+                <img src="../src/assets/logo_user.PNG" alt="" />
+            </div>
         </div>
-        <div className="w-12 h-12 rounded-full bg-pink-300 flex items-center justify-center overflow-hidden border border-black">
-          <img
-            src="../img/warn.png"
-            alt="Avatar"
-            className="w-full h-full object-cover"
-          />
-        </div>
-      </div>
-    </header>
-  );
+    );
 };
 
 export default Header;

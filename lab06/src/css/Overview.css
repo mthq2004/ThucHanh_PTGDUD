@@ -1,0 +1,10 @@
+.container-overview{
+    width: 100%;
+    
+}
+.logo-overview{
+    display: flex;
+    h4{
+        font-weight: bold;
+    }
+}

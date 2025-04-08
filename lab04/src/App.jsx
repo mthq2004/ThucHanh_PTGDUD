@@ -1,15 +1,15 @@
-import { useState } from 'react'
-import Header from './components/Header'
-import Content from './components/Content'
-import Footer from './components/Footer'
+import { useState } from "react";
+import Header from "./components/Header";
+import Content from "./components/Content";
+import Footer from "./components/Footer";
 function App() {
   return (
     <>
-    <Header></Header>
-    <Content></Content>
-    <Footer></Footer>
+      <Header></Header>
+      <Content></Content>
+      <Footer></Footer>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

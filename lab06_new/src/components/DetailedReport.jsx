@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"; // Import useState and useEffect
 import "../css/DetailedReport.css";
-import users from "../data/users"
+// import users from "../data/users"
 import { CiImport } from "react-icons/ci";
 import { CiExport } from "react-icons/ci";
 import { GoPencil } from "react-icons/go";
@@ -9,7 +9,26 @@ import { PiGreaterThan } from "react-icons/pi";
 import { FaRegUserCircle } from "react-icons/fa";
 
 const DetailedReport = () => {
-  
+  // State for users
+  const [users, setUsers] = useState([]);
+
+  // Fetch data when component mounts
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch(
+          "https://67c824890acf98d0708518a5.mockapi.io/users"
+        );
+        const data = await res.json();
+        setUsers(data); // Set users state with the fetched data
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []); // Empty dependency array means this runs only once when the component mounts
+
   const getStatusBadge = (status) => {
     let className = "status-badge ";
     switch (status) {

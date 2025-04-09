@@ -5,6 +5,12 @@ import Col from "react-bootstrap/Col";
 import Nav from "./components/Nav";
 import Header from "./components/Header";
 import Main from "./components/Main";
+import { Routes, Route } from "react-router-dom";
+import Projects from "./components/Projects";
+import Teams from "./components/Team";
+import Analytics from "./components/Analytics";
+import Messages from "./components/Messeges";
+import Intergrations from "./components/Intergrations";
 
 function App() {
   return (
@@ -20,7 +26,15 @@ function App() {
           </Col>
           <Col xs="9">
             <Header />
-            <Main />
+            <Routes>
+              <Route path="/" element={<Main />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/teams" element={<Teams />} />
+              <Route path="/analytics" element={<Analytics />} />
+              <Route path="/messages" element={<Messages />} />
+              <Route path="/integrations" element={<Intergrations />} />
+              {/* Bạn có thể thêm các Route khác ở đây */}
+            </Routes>
           </Col>
         </Row>
       </Container>

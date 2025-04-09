@@ -4,6 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Nav from "./components/Nav";
 import Header from "./components/Header";
+import Main from "./components/Main";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           </Col>
           <Col xs="9">
             <Header />
+            <Main />
           </Col>
         </Row>
       </Container>

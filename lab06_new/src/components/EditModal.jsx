@@ -78,7 +78,7 @@ export default function EditModal({ isOpen, onClose, userId }) {
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <h2>{userId ? 'Edit User' : 'Add User'}</h2>
+      <h2>{mode === "edit" ? "Edit User" : "Add User"}</h2>
         <form onSubmit={handleSubmit}>
           <label>
             Customer Name:

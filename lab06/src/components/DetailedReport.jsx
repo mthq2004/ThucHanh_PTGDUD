@@ -1,12 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react"; // Import useState and useEffect
 import "../css/DetailedReport.css";
 import { CiImport } from "react-icons/ci";
 import { CiExport } from "react-icons/ci";
-import orders from "../data/orders";
 import { GoPencil } from "react-icons/go";
 import { PiLessThan } from "react-icons/pi";
 import { PiGreaterThan } from "react-icons/pi";
+import { FaRegUserCircle } from "react-icons/fa";
+
 const DetailedReport = () => {
+  // State for users
+  const [users, setUsers] = useState([]);
+
+  // Fetch data when component mounts
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch(
+          "https://67c824890acf98d0708518a5.mockapi.io/users"
+        );
+        const data = await res.json();
+        setUsers(data); // Set users state with the fetched data
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []); // Empty dependency array means this runs only once when the component mounts
+
   const getStatusBadge = (status) => {
     let className = "status-badge ";
     switch (status) {
@@ -22,7 +43,6 @@ const DetailedReport = () => {
       default:
         className += "bg-gray-100 text-gray-600";
     }
-
     return <span className={className}>{status}</span>;
   };
 
@@ -34,6 +54,9 @@ const DetailedReport = () => {
           Detailed Report
         </div>
         <div className="button-ex-im">
+          <button className="button-import">
+            <FaRegUserCircle /> Add user
+          </button>
           <button className="button-import">
             <CiImport /> Import
           </button>
@@ -58,7 +81,7 @@ const DetailedReport = () => {
             </tr>
           </thead>
           <tbody>
-            {orders.map((order, index) => (
+            {users.map((user, index) => (
               <tr key={index}>
                 <td>
                   <input type="checkbox" name="" id="" />
@@ -74,13 +97,13 @@ const DetailedReport = () => {
                       marginRight: "10px",
                     }}
                   />
-                  {order.customerName}
+                  {user.customerName}
                 </td>
-                <td>{order.company}</td>
-                <td>{order.orderValue}</td>
-                <td>{order.orderDate}</td>
+                <td>{user.company}</td>
+                <td>{user.orderValue}</td>
+                <td>{user.orderDate}</td>
                 <td style={{ textAlign: "center" }}>
-                  {getStatusBadge(order.status)}
+                  {getStatusBadge(user.status)}
                 </td>
                 <td>
                   <button>

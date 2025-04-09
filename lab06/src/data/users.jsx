@@ -1,4 +1,4 @@
-const orders = [
+const users = [
   {
     customerName: "Elizabeth Lee",
     company: "AvatarSystems",
@@ -43,4 +43,4 @@ const orders = [
   },
 ];
 
-export default orders;
+export default users;

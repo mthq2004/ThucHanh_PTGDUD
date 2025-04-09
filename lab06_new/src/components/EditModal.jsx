@@ -1,49 +1,36 @@
-// EditModal.jsx
-import React, { useState, useEffect } from 'react';
-import '../css/EditModal.css';
+import React, { useState, useEffect } from "react";
+import "../css/EditModal.css";
 
-const API_URL = 'https://67c824890acf98d0708518a5.mockapi.io/users';
+const API_URL = "https://67c824890acf98d0708518a5.mockapi.io/users";
 
-export default function EditModal({ isOpen, onClose, userId }) {
+export default function EditModal({ isOpen, onClose, user, mode, onSuccess }) {
   const [formData, setFormData] = useState({
-    customerName: '',
-    company: '',
-    orderValue: '',
-    orderDate: '',
-    status: 'New',
+    customerName: "",
+    company: "",
+    orderValue: "",
+    orderDate: "",
+    status: "New",
   });
 
-  // Lấy dữ liệu người dùng nếu đang sửa
   useEffect(() => {
-    if (isOpen && userId) {
-      fetch(`${API_URL}/${userId}`)
-        .then(response => {
-          if (!response.ok) throw new Error('Network response was not ok');
-          return response.json();
-        })
-        .then(data => {
-          setFormData(data);
-        })
-        .catch(error => {
-          console.error('Error fetching user data:', error);
-        });
+    if (isOpen && mode === "edit" && user) {
+      setFormData(user);
     } else {
-      // Nếu đang thêm mới, reset form
       setFormData({
-        customerName: '',
-        company: '',
-        orderValue: '',
-        orderDate: '',
-        status: 'New',
+        customerName: "",
+        company: "",
+        orderValue: "",
+        orderDate: "",
+        status: "New",
       });
     }
-  }, [isOpen, userId]);
+  }, [isOpen, user, mode]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -52,24 +39,30 @@ export default function EditModal({ isOpen, onClose, userId }) {
 
     try {
       const response = await fetch(
-        userId ? `${API_URL}/${userId}` : API_URL,
+        user?.id ? `${API_URL}/${user.id}` : API_URL,
         {
-          method: userId ? 'PUT' : 'POST',
+          method: user?.id ? "PUT" : "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify(formData),
         }
       );
 
       if (!response.ok) {
-        throw new Error('Failed to save user');
+        throw new Error("Failed to save user");
       }
 
-      console.log(userId ? 'User updated successfully!' : 'User added successfully!');
-      onClose(); // Đóng modal sau khi xử lý
+      const message = user?.id
+        ? "Cập nhật người dùng thành công!"
+        : "Thêm người dùng thành công!";
+      alert(message); // 🔥 Hiển thị dialog thông báo
+
+      onClose();
+      if (onSuccess) onSuccess();
     } catch (error) {
-      console.error('Error saving user:', error);
+      console.error("Error saving user:", error);
+      alert("Đã xảy ra lỗi khi lưu người dùng.");
     }
   };
 
@@ -77,36 +70,62 @@ export default function EditModal({ isOpen, onClose, userId }) {
 
   return (
     <div className="modal-overlay">
-      <div className="modal-content">
-      <h2>{mode === "edit" ? "Edit User" : "Add User"}</h2>
+      <div className="modal-content" style={{ backgroundColor: "white" }}>
+        <h2>{mode === "edit" ? "Edit User" : "Add User"}</h2>
         <form onSubmit={handleSubmit}>
           <label>
             Customer Name:
-            <input type="text" name="customerName" value={formData.customerName} onChange={handleChange} />
+            <input
+              type="text"
+              name="customerName"
+              value={formData.customerName}
+              onChange={handleChange}
+            />
           </label>
           <label>
             Company:
-            <input type="text" name="company" value={formData.company} onChange={handleChange} />
+            <input
+              type="text"
+              name="company"
+              value={formData.company}
+              onChange={handleChange}
+            />
           </label>
           <label>
             Order Value:
-            <input type="number" name="orderValue" value={formData.orderValue} onChange={handleChange} />
+            <input
+              type="number"
+              name="orderValue"
+              value={formData.orderValue}
+              onChange={handleChange}
+            />
           </label>
           <label>
             Order Date:
-            <input type="date" name="orderDate" value={formData.orderDate} onChange={handleChange} />
+            <input
+              type="date"
+              name="orderDate"
+              value={formData.orderDate}
+              onChange={handleChange}
+            />
           </label>
           <label>
             Status:
-            <select name="status" value={formData.status} onChange={handleChange}>
+            <select
+              name="status"
+              value={formData.status}
+              onChange={handleChange}
+            >
               <option value="New">New</option>
-              <option value="Pending">In-progress</option>
-              <option value="Done">Completed</option>
+              <option value="In-progress">In-progress</option>
+              <option value="Completed">Completed</option>
             </select>
           </label>
           <div className="modal-buttons">
             <button type="submit">Save</button>
-            <button type="button" onClick={onClose}>Cancel</button>
+            <button type="button" onClick={onClose}>
+              Cancel
+            </button>
           </div>
         </form>
       </div>

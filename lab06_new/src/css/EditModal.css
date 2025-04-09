@@ -1,25 +1,23 @@
-/* EditModal.css */
-
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* mờ nền sau */
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
+  background: rgba(0, 0, 0, 0.3); /* Thay đổi màu nền mờ */
+  /* Đây là lớp nền mờ, không dùng white nữa */
 }
-
 .modal-content {
-  background-color: white;
   padding: 24px 20px;
   border-radius: 16px;
-  width: 20%;
+  width: 90%;
+  max-width: 400px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-
+  animation: fadeIn 0.3s ease-in-out;
 }
 
 @keyframes fadeIn {
@@ -79,21 +77,21 @@ form select:focus {
   cursor: pointer;
 }
 
-.modal-buttons button[type='submit'] {
+.modal-buttons button[type="submit"] {
   background-color: #007bff;
   color: white;
   margin-right: 10px;
 }
 
-.modal-buttons button[type='submit']:hover {
+.modal-buttons button[type="submit"]:hover {
   background-color: #0056b3;
 }
 
-.modal-buttons button[type='button'] {
+.modal-buttons button[type="button"] {
   background-color: #e0e0e0;
   color: #333;
 }
 
-.modal-buttons button[type='button']:hover {
+.modal-buttons button[type="button"]:hover {
   background-color: #c2c2c2;
 }

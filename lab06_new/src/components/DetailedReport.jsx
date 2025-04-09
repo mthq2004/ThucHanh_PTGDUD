@@ -12,20 +12,20 @@ const DetailedReport = () => {
   const [formMode, setFormMode] = useState("add");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Fetch users when component mounts
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch(
-          "https://67c824890acf98d0708518a5.mockapi.io/users"
-        );
-        const data = await res.json();
-        setUsers(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+  // Đưa fetchData ra ngoài để dùng lại
+  const fetchData = async () => {
+    try {
+      const res = await fetch(
+        "https://67c824890acf98d0708518a5.mockapi.io/users"
+      );
+      const data = await res.json();
+      setUsers(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
+  useEffect(() => {
     fetchData();
   }, []);
 
@@ -128,7 +128,7 @@ const DetailedReport = () => {
                   {user.customerName}
                 </td>
                 <td>{user.company}</td>
-                <td>{user.orderValue}</td>
+                <td>${user.orderValue}</td>
                 <td>{user.orderDate}</td>
                 <td style={{ textAlign: "center" }}>
                   {getStatusBadge(user.status)}
@@ -150,6 +150,9 @@ const DetailedReport = () => {
         onClose={handleCloseModal}
         user={selectedUser}
         mode={formMode}
+        onSuccess={() => {
+          fetchData(); // Gọi lại sau khi submit thành công
+        }}
       />
 
       {/* Pagination Footer */}
@@ -157,13 +160,27 @@ const DetailedReport = () => {
         <p>{users.length} results</p>
         <div className="number-page-navigation">
           <PiLessThan />
-          <button><span>1</span></button>
-          <button><span>2</span></button>
-          <button><span>3</span></button>
-          <button><span>4</span></button>
-          <button><span>...</span></button>
-          <button><span>10</span></button>
-          <button><span>11</span></button>
+          <button>
+            <span>1</span>
+          </button>
+          <button>
+            <span>2</span>
+          </button>
+          <button>
+            <span>3</span>
+          </button>
+          <button>
+            <span>4</span>
+          </button>
+          <button>
+            <span>...</span>
+          </button>
+          <button>
+            <span>10</span>
+          </button>
+          <button>
+            <span>11</span>
+          </button>
           <PiGreaterThan />
         </div>
       </div>

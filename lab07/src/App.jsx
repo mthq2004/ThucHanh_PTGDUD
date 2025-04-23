@@ -1,46 +1,38 @@
-import { useState } from 'react'
-import './App.css'
-import { Link, Route, Routes } from 'react-router'
-import Home from './components/Home'
-import TodoList from './components/TodoList'
-import ToggleTheme from './components/ToggleTheme'
-import ShoppingCart from './components/ShoppingCart'
-import Auth from './components/Auth'
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import CounterComponent from './features/counter/CounterComponent';
+import TodoList from './features/todos/TodoList';
+import ThemeToggle from './features/theme/ThemeToggle';
+import Counter from './features/counter/Counter';
+import './App.css'; // ✅ import CSS
+import Cart from './features/cart/Cart';
+import Auth from './features/auth/Auth';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const theme = useSelector(state => state.theme.mode);
+
+  // Gán class cho <body> để áp dụng theme
+  useEffect(() => {
+    document.body.className = theme;
+  }, [theme]);
 
   return (
-    <>
-      <div className="container">
-        <p>5 ASYNC</p>
-        <div className="btnNav">
-          <Link to={'/'}>
-            <button>Counter App</button>
-          </Link>
-          <Link to={'/todoList'}>
-            <button>To-do List</button>
-          </Link>
-          <Link to={'/toggleTheme'}>
-            <button>Toggle Theme</button>
-          </Link>
-          <Link to={'/shoppingCart'}>
-            <button>Shopping Cart</button>
-          </Link>
-          <Link to={'/auth'}>
-            <button>Auth</button>
-          </Link>
-        </div>
-        <Routes>
-          <Route path='/' element={<Home/>}/>
-          <Route path='/todoList' element={<TodoList/>}/>
-          <Route path='/toggleTheme' element={<ToggleTheme/>}/>
-          <Route path='/shoppingCart' element={<ShoppingCart/>}/>
-          <Route path='/auth' element={<Auth/>}/>
-        </Routes>
-      </div>
-    </>
-  )
+    <div className="App">
+      <h1>Redux Toolkit Practice</h1>
+      <ThemeToggle />
+      <hr />
+      <h2>+, - useReducer</h2>
+      <Counter></Counter>
+      <hr />
+      <CounterComponent />
+      <hr />
+      <TodoList />
+      <hr />
+      <Cart />    
+      <hr />
+      <Auth />
+    </div>
+  );
 }
 
-export default App
+export default App;

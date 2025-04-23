@@ -1,19 +1,9 @@
-*{
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+body.light {
+  background-color: #ffffff;
+  color: #222222;
 }
 
-.container{
-  max-width: 1480px;
-  margin: 0 auto;
-  p{
-    text-align: center;
-  }
-}
-
-.btnNav{
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+body.dark {
+  background-color: #222222;
+  color: #ffffff;
 }
